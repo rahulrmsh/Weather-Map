@@ -21,7 +21,7 @@ def error_page():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" "+'*' * (width-1))
     print(" \n An Unexpected Error Occurred \n\n\t* Check Your Internet Connection.\n\t* Check if the City and Country Match.\n\n\n")
-    load_animation(" restarting your console application in ", "987654321", 10, 1)
+    load_animation(" restarting your console application in ", "987654321", 10, 1, 1)
     welcome_screen()
     
 def webpage_open(filename):
@@ -123,7 +123,7 @@ def desired_map():
                 if((city_name in city_data.name.values)):
                     location = city_name +" "+ ccode
                     print("\n Desired Location : {}\n".format(location))
-                    load_animation(" Please Wait...","|/-\\",100,0.075)
+                    load_animation(" Please Wait...","|/-\\",100,0.075,0)
                     location_coordinates = geocoder.osm(location)
                     sys.stdout.write("\033[F")
                     try:
@@ -236,7 +236,7 @@ def welcome_screen():
         else:
             check = True
         
-def load_animation(string_input, animation_input, final_count, speed): 
+def load_animation(string_input, animation_input, final_count, speed, controller): 
     load_str = string_input
     animation = animation_input
     anicount = 0
@@ -248,7 +248,9 @@ def load_animation(string_input, animation_input, final_count, speed):
         sys.stdout.flush() 
         anicount = (anicount + 1)% len(animation_input)
         counttime = counttime + 1
-    os.system('cls' if os.name == 'nt' else 'clear')
+    if(controller == 1):
+        os.system('cls' if os.name == 'nt' else 'clear')
+        
 def is_connected():
     try:
         socket.create_connection(("www.google.com", 80))
@@ -258,7 +260,7 @@ def is_connected():
 if __name__ == '__main__':
     os.system('cls' if os.name == 'nt' else 'clear')
     if(is_connected()):
-        load_animation("starting your console application...","|/-\\",100,0.075)
+        load_animation("starting your console application...","|/-\\",100,0.075, 1)
         owm = pyowm.OWM('591569bc1f75d583f1852071bad7236d')
         welcome_screen()   
     else:
