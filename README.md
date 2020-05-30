@@ -2,6 +2,7 @@
 
 ## Installation
 To run this project, install it locally:
+#### Using Pip:
 ````
 $ sudo git clone https://github.com/rahulrmsh/Weather-Map.git
 $ cd Weather-Map
